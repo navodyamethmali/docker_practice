@@ -1,0 +1,23 @@
+name: Build  Docker image 
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start the workflow
+        run: echo "Hii"
+
+      - uses: actions/checkout@v4
+
+      - name: Build the docker image 
+        run: docker build . -t navodya123456/node-demo:latest
+
+      - name: Run the Docker contsiner 
+        run: docker run -d -p 3000:3000 --name myapp node-demo
+
+      - name: Test App
+        run: curl http://localhost:3000
+      
+      

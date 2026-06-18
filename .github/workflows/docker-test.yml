@@ -12,10 +12,13 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build the docker image 
-        run: docker build -t my-app .
+        run: docker build -t my-app ./L01
 
       - name: Run the Docker contsiner 
         run: docker run -d -p 3000:3000 --name myapp myapp
+
+      - name: Wait for app startup
+        run: sleep 5
 
       - name: Test App
         run: curl http://localhost:3000
